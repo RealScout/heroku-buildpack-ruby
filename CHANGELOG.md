@@ -1,6 +1,7 @@
 ## Master
 
 * Bump bundler to 1.13.6 [Bundler changelog](https://github.com/bundler/bundler/blob/v1.13.6/CHANGELOG.md). Allows for use of Ruby version operators.
+* Set SKIP_DB_ADDON to suppress automatic provisioning of postgres database.
 
 ## v146 (03/23/2016)
 

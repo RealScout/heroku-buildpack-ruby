@@ -777,7 +777,7 @@ params = CGI.parse(uri.query || "")
   # decides if we need to enable the dev database addon
   # @return [Array] the database addon if the pg gem is detected or an empty Array if it isn't.
   def add_dev_database_addon
-    bundler.has_gem?("pg") ? ['heroku-postgresql'] : []
+    bundler.has_gem?("pg") && !skip_db_addon? ? ['heroku-postgresql'] : []
   end
 
   # decides if we need to install the node.js binary
@@ -803,6 +803,10 @@ params = CGI.parse(uri.query || "")
     end
   end
   alias :node_js_installed? :node_preinstall_bin_path
+
+  def skip_db_addon?
+    env('SKIP_DB_ADDON').present?
+  end
 
   def node_not_preinstalled?
     !node_js_installed?
